@@ -1,0 +1,421 @@
+JQuery
+	CDN	(Content Delivery Network)
+
+<script src="https://code.jquery.com/jquery-3.5.1.js" 
+integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" 
+crossorigin="anonymous">
+
+</script>
+
+
+	IMO, JQuery provides a very convenient environment for javascript coding
+	JQuery is an application of Javascipt.
+
+There are 2 ways we can use jquery:
+	1) directly referring to the jquery.js file in CDN	(Internet url)
+	2) local JQuery.js file
+			<script src="jquery.js"></script>
+------------
+	document.getElementById('txt').value;		//this is javascript
+	$("#txt").val();				//this is jquery
+
+------------
+
+window.onload=function(){};		//there are something which works only after the window load event.
+//in jquery, we follow event binding from script tag	(not in inline)
+
+In javascript, we bound events to functions 
+	inline
+	script tag internal			addEventListener('click',fn1);		//this approach
+	script src=		external
+
+
+In JQuery, we are not binding the events to functions in inline.
+We will not touch HTML code for event handling
+
+FIRST THING we need to check is if the document is ready or not		(window.onload)
+
+in jquery we refer to any element in html using "SELECTORS"
+
+	Element selector
+	ID selector
+	class selector
+	pseudo selector
+
+Selectors are coded using
+	$()			inside this brackets, we give selector
+
+
+
+Task:
+	go to https://code.jquery.com/
+	choose latest version of jquery (uncompressed, slim or anything)
+	copy the script tag
+
+	Create a html file
+	paste the script tag inside head tag
+
+	CREATE ANOTHER SCRIPT TAG and write hello world code
+	$(document).ready(fn1);			//$(selector).event(eventHandler)
+	function fn1()
+	{
+		alert('hello world');
+	}
+
+	the above code can be refactored as:
+
+	$(document).ready(function()
+	{
+		alert('hello world');
+	});
+
+	the above code is using anonymous function.	Whenever there is an anonymous functions, we can use lambda
+
+	$(document).ready(()=>{
+           alert('this is ok');
+           alert('this is also ok');
+       });
+
+
+    <input type="number" name="" id="no1"><br>
+    <input type="number" name="" id="no2"><br>
+    <input type="button" value="Add" id="btnAdd">
+
+	When i click "btnAdd", the no1 and no2 should be added.
+	btnAdd is ID, so use ID selector	#
+
+$(document).ready(()=>{
+            $("#btnAdd").click(function(){
+                //obtain the values of no1 and no2      (no1 and no2 are IDs. so use # id selector)
+                // var x=document.getElementById('no1').value;         //this works fine here also
+                var x=$("#no1").val();              //not value         only val()  note the brackets
+                var y=$("#no2").val();
+                var z=parseInt(x)+parseInt(y);
+                alert(z);
+            });
+       });
+
+
+TasK:
+	create couple of text boxes that accept only numbers.
+	create add, subtract and multiply buttons
+	use jquery syntax to obtain the value of no1 and no2
+	handle the click event for all the three buttons
+
+	display the result in <div></div>			innerHTML is javascript. Find syntax for jquery.
+
+
+
+when i click "Add" button
+	this refers to Add button only
+	but i want value of text box (i cannot use this)	this refers to button. but what i want is text box value
+
+
+
+button
+	when i click button its background color should change
+	
+
+
+TasK:
+	Create a button with value "Click me" 
+	and when I click that button its value should change to "You clicked me"
+
+	 $("#button1").prop("value", "you clicked me");		//same
+	 $(this).val("you clicked me");				//same
+
+TasK:
+	create a html file with 5 text boxes (no id or name for the text boxes)
+	use pseudo selector (type=text) to achieve the following:
+		i) when cursor comes into the text box, the background color becomes light yellow
+		ii) when cursor goes away from the text box, the background color becomes white
+
+	Note: use only 1 event handler to achieve this
+	Hint: to apply background color, use css property
+
+	val()
+	html()
+	css(p,v)			p= background-color		v=lightyellow
+	
+
+Task:	(example for prop)
+	Create a html file with
+	User Name
+	Password
+
+	This is a login page
+	Below password, put one check box "Show Password"
+	If i click Check box, the entered password should be visible
+	If i untick check box, the password should be masked
+
+	Hint:
+		<input type=password />					password is masked
+		<input type=text />					password is visible
+
+	so we should change the type of the control from "password" to "text"
+	prop is useful here.			using prop, we can change any property (value or type or class)
+-------------------solution----------------------
+	<script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+    <script>
+        $(document).ready(function(){
+            $("#chk1").change(function(){
+                if($(this).is(":checked"))
+                    $("#txtPassword").prop("type","text");
+                else
+                $("#txtPassword").prop("type","password");
+            });
+        })
+    </script>
+</head>
+<body>
+    User Name: <input type="text" name="" id=""><br>
+    Password: <input type="password" name="" id="txtPassword"><br>
+    <input type="checkbox" name="" id="chk1"><label for="chk1">Show Password</label>
+    <br>
+    <input type="button" value="Submit">
+--------------------------------
+
+$("#cpwd").click(function(){  
+                //alert($("#psd").attr('type'));
+                if($("#psd").attr('type')=='password')
+                    $("#psd").prop("type", "text");
+                else
+                    $("#psd").prop("type", "password");
+            });
+
+=============================================
+Activity:
+	Identify the various methods of selectors in JQuery
+
+	i) Element selector		ex:	$("p")
+	ii) ID selector			ex:	$("#p1")
+	iii) class selector		ex:	$(".p1")
+	iv) all selector / universal	ex:	$("*")			when mouse moves over any element, it should have shadow/ glow
+	v) this selector		ex:	$(this)		no quotes here. this is used inside event handler
+	vi) combinator selector		ex:	element plus id. 		element plus class name 
+			$("p.intro")		here all paragraphs whose class name is 'intro'
+	vii) pseudo selector		ex: 	$("p:first")
+
+
+	<a href=			$("[href]")		all elements that has href
+	<link href=					
+	<input type=			$("input[type='text']")	very specific all input elements whose type is text
+	
+	$("a[target='_blank']")		[] because, target is an attribute
+
+	$("a[target!='_blank']")	all anchor elements, whose target not equal to _blank are selected
+
+	$(":button")			button elements and input type=button elements
+
+
+Task:
+	Create a HTML table which contains
+		<table><tr><td> elements
+	There should be atleast 4 rows
+
+	Write jquery (document. ready event) to change the background color of odd rows different from even rows
+
+	Note:	use
+		$("tr:even")
+		$("tr:odd")
+
+$("tr:first,tr:last").attr("bgcolor","lightyellow");		// we can use multiple selectors using comma
+$("tr:odd").css("background-color","cyan");
+
+	attr is used to give html attribute (like bgcolor)
+	when attr and css both are used, then css wins
+
+  $(document).ready(function(){
+            $("tr:odd").css("background-color","cyan");
+            $("tr:even").css("background-color","silver");
+            $("tr:first, tr:last").css("background-color","yellow");
+            $("table").mouseenter(function(){
+                console.log("mouse  is moving over table");
+                $(this).css("text-shadow","2px 2px");
+            });
+            $("table").mouseleave(function(){
+                // console.log("mouse  is moving over table");
+                $(this).css("text-shadow","0px 0px");
+            });
+        });
+
+
+
+----------------invert colors using css filter property while mover hover and leave------------
+        $(document).ready(function(){
+            $("tr:odd").css("background-color","cyan");
+            $("tr:even").css("background-color","silver");
+            $("tr:first, tr:last").css("background-color","yellow");
+            $("tr").mouseenter(function(){
+                console.log("mouse  is moving over table");
+                $(this).css("filter","invert(20%)");
+            });
+            $("tr").mouseleave(function(){
+                // console.log("mouse  is moving over table");
+                $(this).css("filter","invert(0%)");
+            });
+        });
+----------------------hide -----------
+                $("#txt").hide();			//jquery method
+                $("#txt").css("display","none");	//css method
+
+-------------------
+$("p").on("click", function(){
+  $(this).hide();
+});
+
+instead of "click" event as constant string, we can use a variable and as per user choice, we can bind event to function dynamically
+
+
+we can modify the content of selected element
+we can modify the style of selected element
+
+Adding elements and removing elements using JQuery
+	ex:	If i click a checkbox, a form should be made visible
+		but dynamically elements can also be added.
+		
+	"Add Passenger" button will display one more row to allow the user to add passenger
+	"Remove" button should remove a row
+
+	inner html can be used to add HTML elements dynamically	(		.html()
+
+
+TasK
+	refer:
+		https://www.w3schools.com/jquery/jquery_dom_add.asp
+
+	Learn to dynamically add elements to a container using jquery
+
+--------------------------Difference between prepend and before
+
+Prepend puts the content inside the start and end tag of the selector (but before existing content).
+
+Before puts the content before the selector element (not inside the selector element)
+
+same way for Append and After
+
+
+
+
+If your selector is a <form> element. Then your new content is a textbox. You have to append. So that when the form is submitted, this textbox also gets submitted
+
+prepend and append are going to add the new content inside the selected element. (but there is already some content means, prepend will add before existing content. append will add after existing content).
+
+before and after will not add new content inside the selected element. THey add before the start tag or after the end tag of selected element
+
+----------------------Difference between remove() and empty()
+            $("button").click(function(){
+                $("table").remove();
+            });
+the above code will remove the table element itself
+-------------------------------
+            $("button").click(function(){
+                $("table").empty();
+            });
+
+the above code will remove only the child elements inside table. But table remain present.
+
+--------------------------------------
+
+JQuery effects
+
+	fadeIn
+	fadeOut
+	fadeToggle
+
+	animate
+
+----------------=======================-------------------------===============
+JQuery UI
+-------------
+
+Lot of User Interface components are already created as JQuery UI. We can use them in our projects.
+How to use JQuery UI?
+
+<script src="jquery.js">			//either downloaded js or CDN
+In addition to this,
+we need to add 2 more files
+	jquery.css				//stylesheet 
+	jquery-ui.js				//ui
+
+so totally 3 files to be included in our project
+
+-------------------------code.jquery.com--------------------------------------
+<link href = "https://code.jquery.com/ui/1.10.4/themes/ui-lightness/jquery-ui.css"
+   rel = "stylesheet">
+<script src = "https://code.jquery.com/jquery-1.10.2.js"></script>
+<script src = "https://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+
+
+
+
+---------------------------google cdn for jquery ui---------------------------------
+<link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.9/themes/base/jquery-ui.css" type="text/css" media="all" /> 
+<script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.5.min.js" type="text/javascript"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.9/jquery-ui.min.js" type="text/javascript"></script>
+------------
+
+
+
+Dialog is like a message box or a small window
+Alert is a dialog box we have use.
+prompt also is a dialog box to get inputs
+
+But we need some space where we can put our own choice of user interface controls in a dialog box.
+Suppose, if we can convert a <div> into a dialog????
+
+
+Task:
+	Create a html page and include 
+		jquery.js
+		jquery-ui.js
+		jquery-ui.css
+	from code.jquery or google cdn
+
+	Write code to create a date picker using jquery ui
+
+
+    <link href = "https://code.jquery.com/ui/1.10.4/themes/ui-lightness/jquery-ui.css"
+   rel = "stylesheet">
+<script src = "https://code.jquery.com/jquery-1.10.2.js"></script>
+<script src = "https://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+
+<!-- <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.9/themes/base/jquery-ui.css" type="text/css" media="all" /> 
+<script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.5.min.js" type="text/javascript"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.9/jquery-ui.min.js" type="text/javascript"></script> -->
+
+
+<script>
+    $(document).ready(function(){
+        $("#txt1").click(function(){
+            $(this).datepicker();
+        });
+    });
+</script>
+</head>
+<body>
+    <input type="text" name="" id="txt1">
+</body>
+
+
+
+------------------
+User JQuery UI to create a Menu 
+
+{icons:{submenu:"ui-icon-circle-triangle-e"}, 
+position:{my:"right-top",at:"right-10 top+5"}}
+
+
+		{
+               icons: { submenu: "ui-icon-circle-triangle-e"},
+               position: { my: "right top", at: "right-10 top+5" }
+            }
+
+
+
+Dialog
+Date Picker
+Menu
+Accordion
+Draggable
+Slider

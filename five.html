@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+    <script>
+        $(document).ready(function()
+        {
+            $("button").click(function()
+            {
+                $("#txt").hide();
+                $("#txt").css("display","none");
+            });
+            $("#btn").click(function(){
+             $("#p1").before("<b>New para added</b>.</br> ");
+                });
+        });
+    </script>
+</head>
+<body>
+    <input type="text" name="" id="txt">
+    <br>
+    <button>Click</button>
+
+    <P style="background-color: lightblue;" id="p1">Para 1</P><br>
+    <p>Para 2</p>
+    <button id="btn">Prepend Text</button>
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://code.jquery.com/ui/1.10.4/themes/ui-lightness/jquery-ui.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="https://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+    <style>
+ .ui-menu .ui-menu-item {
+    display: flex;
+    float: left;
+    margin: 0;
+    padding: 0;
+    width: auto;
+}
+     </style>
+    <script>
+        $(document).ready(function(){
+            $("#menu").menu({
+               icons: { submenu: "ui-icon-circle-triangle-e"},
+               position: { my: "top right", at: "right+10 top-20" }
+            });
+        });
+    </script>
+</head>
+<body>
+    <ul id = "menu">
+        <li><a href = "#">Spring</a></li>
+        <li><a href = "#">Hibernate</a></li>
+        <li><a href = "#">Java</a>
+           <ul>
+              <li><a href = "#">Java IO</a></li>
+              <li><a href = "#">Swing</a></li>
+              <li><a href = "#">Jaspr Reports</a></li>
+           </ul>
+        </li>
+        <li><a href = "#">JSF</a></li>
+        <li><a href = "#">HTML5</a></li>
+     </ul>
+</body>
+
+</html>

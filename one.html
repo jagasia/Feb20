@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="jquery.js">
+        //do not write anything here
+    </script>
+    <script>
+        //handle the document ready event. only withing that ready event, we bind all other events
+       $(document).ready(()=>{
+            $("input[type=button]").click(function(){
+                //                  this            object refers to the source of the event
+                //alert("You clicked "+$(this).val());
+                var x=$("#no1").val();              //not value         only val()  note the brackets
+                var y=$("#no2").val();
+                var result=0;
+                var operation=$(this).val();
+                switch(operation)
+                {
+                    case 'Add':
+                        result=parseInt(x)+parseInt(y);
+                        break;
+                    case 'Subtract':
+                        result=parseInt(x)-parseInt(y);
+                        break;
+                    case 'Multiply':
+                        result=parseInt(x)*parseInt(y);
+                        break;
+                }
+                $("#divResult").html(result);
+            });
+       });
+    </script>
+</head>
+<body>
+    <input type="number" name="" id="no1"><br>
+    <input type="number" name="" id="no2"><br>
+    <input type="button" value="Add">
+    <input type="button" value="Subtract">
+    <input type="button" value="Multiply">
+    <div id="divResult"></div>
+</body>
+</html>
